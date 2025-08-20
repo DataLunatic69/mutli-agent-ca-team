@@ -1,0 +1,82 @@
+# pyproject.toml
+# pyproject.toml
+[project]
+name = "ca-multi-agent"
+version = "0.1.0"
+description = "A multi-agent system for Chartered Accountancy tasks."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"  # Changed from {text = "MIT"} to simple string
+authors = [
+  {name = "Your Name", email = "your.email@example.com"}
+]
+
+dependencies = [
+    "fastapi>=0.104.1",
+    "uvicorn[standard]>=0.24.0",
+    "sqlalchemy>=2.0.23",
+    "psycopg2-binary>=2.9.9",  # PostgreSQL driver
+    "asyncpg>=0.29.0",         # Async PostgreSQL driver for production
+    "alembic>=1.12.1",
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    "python-multipart>=0.0.6", # For file uploads
+    "python-jose[cryptography]>=3.3.0", # For JWT auth
+    "passlib[bcrypt]>=1.7.4",  # For password hashing
+             
+  
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.3",
+    "pytest-asyncio>=0.21.1",
+    "httpx>=0.25.2",
+    "python-dotenv>=1.0.0",
+    "ipdb>=0.13.13",
+    "pre-commit>=3.6.0",
+    "black>=23.11.0",
+    "isort>=5.12.0",
+    "ruff>=0.1.6",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | dist
+  | migrations
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.ruff]
+line-length = 88
+select = [
+    "E", "F", "W",  # Flake8 defaults
+    "I", # isort
+    "UP", # pyupgrade
+]
+ignore = []
+
+# pyproject.toml
+[build-system]
+requires = ["setuptools>=65.5.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# ADD THIS SECTION:
+[tool.setuptools]
+packages = ["ca_multi_agent", "ca_multi_agent.config", "ca_multi_agent.db", "ca_multi_agent.models", "ca_multi_agent.schemas", "ca_multi_agent.services", "ca_multi_agent.agents", "ca_multi_agent.api", "ca_multi_agent.workflows", "ca_multi_agent.utils"]
+

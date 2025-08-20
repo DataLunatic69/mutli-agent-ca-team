@@ -1,0 +1,41 @@
+# .gitignore
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+.env.local
+.env.prod
+
+# Virtual environments
+venv/
+.env/
+.venv/
+env/
+
+# Database
+*.db
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+
+# Docker
+data/  # For mounted database volumes
+
+# Build/Install
+dist/
+build/
+*.egg-info/
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
