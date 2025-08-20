@@ -1,23 +1,14 @@
-
 from logging.config import fileConfig
-
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-
 from alembic import context
-
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-# Import all your models here
-from src.ca_multi_agent.models.accounting import *
-from src.ca_multi_agent.models.artifacts import *
-from src.ca_multi_agent.models.compliance import *
-from src.ca_multi_agent.models.document import *
-from src.ca_multi_agent.models.reconciliation import *
-from src.ca_multi_agent.models.tax import *
-from src.ca_multi_agent.models.user_org import *
+# Add the current directory to Python path so we can import our modules
+sys.path.append(os.getcwd())
+
+# Import your Base
 from src.ca_multi_agent.db.base import Base
 
 config = context.config
@@ -27,7 +18,7 @@ if config.config_file_name is not None:
 
 target_metadata = Base.metadata
 
-def run_migrations_offline() -> None:
+def run_migrations_offline():
     url = config.get_main_option("sqlalchemy.url")
     context.configure(
         url=url,
@@ -39,7 +30,7 @@ def run_migrations_offline() -> None:
     with context.begin_transaction():
         context.run_migrations()
 
-def run_migrations_online() -> None:
+def run_migrations_online():
     connectable = engine_from_config(
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",

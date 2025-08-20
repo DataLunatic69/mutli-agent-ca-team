@@ -14,7 +14,7 @@ class ComplianceTask(Base):
     status: Mapped[str] = mapped_column(String(20), default="pending")  # pending, in_progress, completed, cancelled
     priority: Mapped[str] = mapped_column(String(20), default="medium")  # low, medium, high, critical
     task_type: Mapped[str] = mapped_column(String(50), nullable=False)  # filing, payment, documentation, review
-    metadata: Mapped[JSON] = mapped_column(JSON, nullable=True)
+    task_metadata: Mapped[JSON] = mapped_column(JSON, nullable=True)  # CHANGED: metadata -> task_metadata
     reminders_sent: Mapped[JSON] = mapped_column(JSON, nullable=True)
 
     org_id: Mapped[uuid.UUID] = mapped_column(
@@ -42,6 +42,7 @@ class ComplianceRule(Base):
     due_date_rule: Mapped[JSON] = mapped_column(JSON, nullable=False)  # JSON logic for calculating due dates
     jurisdiction: Mapped[str] = mapped_column(String(100), nullable=True)
     is_active: Mapped[bool] = mapped_column(default=True)
+    rule_metadata: Mapped[JSON] = mapped_column(JSON, nullable=True)  # CHANGED: metadata -> rule_metadata
 
     org_id: Mapped[uuid.UUID] = mapped_column(
         ForeignKey("organizations.id", ondelete="CASCADE"), nullable=False, index=True

@@ -12,7 +12,7 @@ class Artifact(Base):
     artifact_type: Mapped[str] = mapped_column(String(50), nullable=False)  # report, export, filing, summary
     format: Mapped[str] = mapped_column(String(20), nullable=False)  # pdf, excel, json, csv
     storage_url: Mapped[str] = mapped_column(Text, nullable=False)
-    metadata: Mapped[JSON] = mapped_column(JSON, nullable=True)
+    artifact_metadata: Mapped[JSON] = mapped_column(JSON, nullable=True)  # CHANGED: metadata -> artifact_metadata
     size_bytes: Mapped[int] = mapped_column(nullable=True)
 
     org_id: Mapped[uuid.UUID] = mapped_column(
