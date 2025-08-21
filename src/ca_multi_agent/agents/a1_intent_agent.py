@@ -5,7 +5,7 @@ from datetime import datetime
 import logging
 
 from .base_agent import BaseAgent
-from ..services.document_ingestion import document_ingestion_service
+from ..services import document_ingestion_service
 
 logger = logging.getLogger(__name__)
 

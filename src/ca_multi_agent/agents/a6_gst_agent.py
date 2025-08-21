@@ -5,8 +5,8 @@ import logging
 import json
 
 from .base_agent import BaseAgent
-from ..services.tax_service import get_tax_service
-from ..services.ledger_service import get_ledger_service
+from ..services.tax_services import get_tax_service
+from ..services.ledger_services import get_ledger_service
 
 logger = logging.getLogger(__name__)
 
